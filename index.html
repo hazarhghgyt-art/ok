@@ -3,143 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Infrastructure Cost Matrix</title>
+    <title>AWS Cloud Infrastructure Cost Matrix</title>
     <style>
         body {
-            font-family: 'Courier New', Courier, monospace;
+            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 40px;
-            background-color: #0a0a0c;
-            color: #d1d1d6;
+            background-color: #ffffff;
+            color: #333333;
         }
-        .matrix-container {
-            max-width: 1200px;
+        .corporate-table-container {
+            max-width: 1000px;
             margin: 0 auto;
-            background: #13131a;
-            border: 2px solid #2a2a35;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            border-radius: 4px;
-            padding: 24px;
         }
-        .matrix-header {
-            border-bottom: 2px dashed #3a3a4a;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+        .table-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111111;
+            margin-bottom: 5px;
         }
-        .matrix-header h2 {
-            margin: 0;
-            color: #ff3333;
-            font-size: 22px;
-            letter-spacing: 2px;
+        .table-subtitle {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 20px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-        }
-        th {
-            background-color: #1c1c24;
-            color: #8e8e93;
-            padding: 16px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #2a2a35;
-        }
-        td {
-            padding: 18px 16px;
-            border-bottom: 1px solid #1c1c24;
             font-size: 14px;
         }
-        tr:hover {
-            background-color: #181822;
-        }
-        .instance-id {
-            color: #5856d6;
+        th {
+            background-color: #f2f2f2;
+            color: #111111;
+            padding: 12px;
             font-weight: bold;
+            border-top: 1px solid #cccccc;
+            border-bottom: 2px solid #aaaaaa;
         }
-        .price-tag {
-            color: #ff453a;
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e5e5;
+            color: #222222;
+        }
+        .bold-text {
             font-weight: bold;
-            font-size: 16px;
-            background: rgba(255, 69, 58, 0.1);
-            padding: 6px 12px;
-            border: 1px solid rgba(255, 69, 58, 0.3);
-            border-radius: 2px;
-            display: inline-block;
+            color: #000000;
         }
-        .critical-tier {
-            background-color: #241212 !important;
-        }
-        .critical-tier .price-tag {
-            color: #ffffff;
-            background: #ff453a;
-            box-shadow: 0 0 15px rgba(255, 69, 58, 0.6);
-            animation: alert Blink 1.5s infinite;
-        }
-        .unit {
-            color: #636366;
-            font-size: 11px;
+        .price-text {
+            font-weight: bold;
+            color: #111111;
         }
     </style>
 </head>
 <body>
 
-<div class="matrix-container">
-    <div class="matrix-header">
-        <h2>AWS EC2 dedicated-cluster / pricing_matrix_2026.cfg</h2>
-    </div>
+<div class="corporate-table-container">
+    <div class="table-title">AWS EC2 Dedicated Instance Pricing Profile</div>
+    <div class="table-subtitle">Effective Date: Q1 2026 — On-Demand Hosting Rates</div>
+    
     <table>
         <thead>
             <tr>
                 <th>Instance Type</th>
-                <th>Compute / vCPU</th>
-                <th>Memory Allocation</th>
-                <th>EBS Throughput</th>
-                <th>Network Provision</th>
-                <th>Monthly Rate (On-Demand)</th>
+                <th>vCPU</th>
+                <th>Memory</th>
+                <th>Storage Baseline</th>
+                <th>Network Performance</th>
+                <th>Monthly Cost (USD)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="instance-id">c6i.sub_g1.nano</td>
-                <td>2 vCPU <span class="unit">(Intel Xeon)</span></td>
-                <td>4 GiB <span class="unit">ECC</span></td>
-                <td>Up to 12.5 Gbps</td>
-                <td>High / Burst</td>
-                <td><span class="price-tag" style="color:#34c759; background:none; border:none;">$149.00</span></td>
+                <td class="bold-text">m6i.standard.01</td>
+                <td>2</td>
+                <td>8 GiB</td>
+                <td>EBS-Only</td>
+                <td>Up to 10 Gbps</td>
+                <td class="price-text">$185.00</td>
             </tr>
             <tr>
-                <td class="instance-id">r7g.x2_cluster.xlarge</td>
-                <td>16 vCPU <span class="unit">(Graviton3)</span></td>
-                <td>128 GiB <span class="unit">DDR5</span></td>
-                <td>25.0 Gbps Dedicated</td>
-                <td>50 Gbps Fabric</td>
-                <td><span class="price-tag">$1,840.00</span></td>
+                <td class="bold-text">c7g.compute.04</td>
+                <td>16</td>
+                <td>32 GiB</td>
+                <td>1 x 475 GB NVMe</td>
+                <td>12.5 Gbps</td>
+                <td class="price-text">$1,420.00</td>
             </tr>
             <tr>
-                <td class="instance-id">m7i-flex.meta_node.8xlarge</td>
-                <td>64 vCPU <span class="unit">(Sapphire Rapids)</span></td>
-                <td>256 GiB <span class="unit">HBM2e</span></td>
-                <td>40.0 Gbps Burst Max</td>
-                <td>100 Gbps EFA</td>
-                <td><span class="price-tag">$4,920.00</span></td>
+                <td class="bold-text">r7i.memory.12</td>
+                <td>48</td>
+                <td>384 GiB</td>
+                <td>EBS-Only</td>
+                <td>25 Gbps</td>
+                <td class="price-text">$5,180.00</td>
             </tr>
-            <tr class="critical-tier">
-                <td class="instance-id">p5.h100_matrix.48xlarge</td>
-                <td>192 vCPU <span class="unit">(Custom Architecture)</span></td>
-                <td>2,048 GiB <span class="unit">vRAM Distributed</span></td>
-                <td>80.0 Gbps (Sustained)</td>
-                <td>3,200 Gbps GPUDirect</td>
-                <td><span class="price-tag">$24,650.00</span></td>
+            <tr>
+                <td class="bold-text">p5.node.48xl</td>
+                <td>192</td>
+                <td>2,048 GiB</td>
+                <td>4 x 3.8 TB NVMe</td>
+                <td>3,200 Gbps</td>
+                <td class="price-text">$28,450.00</td>
             </tr>
-            <tr class="critical-tier" style="background-color: #2c0e0e !important;">
-                <td class="instance-id">u-24tb1.metal_hpc.cluster_node</td>
-                <td>448 vCPU <span class="unit">(Bare Metal Bare-Die)</span></td>
-                <td>24,576 GiB <span class="unit">(24TB) Persistent</span></td>
-                <td>100.0 Gbps (Isolated)</td>
-                <td>Ultra-Low Latency Mesh</td>
-                <td><span class="price-tag">$86,400.00</span></td>
+            <tr>
+                <td class="bold-text">u-24tb1.metal.02</td>
+                <td>448</td>
+                <td>24,576 GiB</td>
+                <td>Dedicated SAN</td>
+                <td>100 Gbps</td>
+                <td class="price-text">$89,600.00</td>
             </tr>
         </tbody>
     </table>
