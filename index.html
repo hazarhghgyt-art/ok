@@ -1,141 +1,145 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriş Seviyesinden Astronomik Seviyeye VPS Fiyatları</title>
+    <title>Enterprise Infrastructure Cost Matrix</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background-color: #121212;
-            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 40px;
+            background-color: #0a0a0c;
+            color: #d1d1d6;
         }
-        .vps-table-container {
-            overflow-x: auto;
-            max-width: 100%;
-            background: #1e1e1e;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-radius: 12px;
-            padding: 15px;
-            border: 1px solid #333;
+        .matrix-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #13131a;
+            border: 2px solid #2a2a35;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border-radius: 4px;
+            padding: 24px;
+        }
+        .matrix-header {
+            border-bottom: 2px dashed #3a3a4a;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .matrix-header h2 {
+            margin: 0;
+            color: #ff3333;
+            font-size: 22px;
+            letter-spacing: 2px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
         }
-        th, td {
-            padding: 16px 20px;
-            border-bottom: 1px solid #2d2d2d;
-        }
         th {
-            background-color: #8b0000; /* Koyu Kırmızı - Tehditkar */
-            color: #ffffff;
-            font-weight: bold;
+            background-color: #1c1c24;
+            color: #8e8e93;
+            padding: 16px;
+            font-size: 12px;
             text-transform: uppercase;
-            font-size: 14px;
             letter-spacing: 1px;
+            border-bottom: 2px solid #2a2a35;
+        }
+        td {
+            padding: 18px 16px;
+            border-bottom: 1px solid #1c1c24;
+            font-size: 14px;
         }
         tr:hover {
-            background-color: #252525;
+            background-color: #181822;
         }
-        .price-badge {
-            background-color: #ff3333;
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 4px;
+        .instance-id {
+            color: #5856d6;
             font-weight: bold;
+        }
+        .price-tag {
+            color: #ff453a;
+            font-weight: bold;
+            font-size: 16px;
+            background: rgba(255, 69, 58, 0.1);
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 69, 58, 0.3);
+            border-radius: 2px;
             display: inline-block;
         }
-        .extreme-price {
-            background-color: #ffcc00;
-            color: #000;
-            font-size: 1.1em;
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-            animation: pulse 2s infinite;
+        .critical-tier {
+            background-color: #241212 !important;
         }
-        .depression-zone {
-            background-color: #1a0000;
+        .critical-tier .price-tag {
+            color: #ffffff;
+            background: #ff453a;
+            box-shadow: 0 0 15px rgba(255, 69, 58, 0.6);
+            animation: alert Blink 1.5s infinite;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-        @media screen and (max-width: 768px) {
-            th, td {
-                padding: 10px 12px;
-                font-size: 13px;
-            }
+        .unit {
+            color: #636366;
+            font-size: 11px;
         }
     </style>
 </head>
 <body>
 
-<div class="vps-table-container">
+<div class="matrix-container">
+    <div class="matrix-header">
+        <h2>AWS EC2 dedicated-cluster / pricing_matrix_2026.cfg</h2>
+    </div>
     <table>
         <thead>
             <tr>
-                <th>Paket Seviyesi</th>
-                <th>İşlemci (vCPU / Core)</th>
-                <th>Bellek (RAM)</th>
-                <th>Depolama (NVMe SSD)</th>
-                <th>Aylık Trafik Kotası</th>
-                <th>Aylık Fiyat (KDV Hariç)</th>
+                <th>Instance Type</th>
+                <th>Compute / vCPU</th>
+                <th>Memory Allocation</th>
+                <th>EBS Throughput</th>
+                <th>Network Provision</th>
+                <th>Monthly Rate (On-Demand)</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Umut Verici Başlangıç -->
             <tr>
-                <td><strong>Öğrenci / Başlangıç</strong></td>
-                <td>1 vCPU</td>
-                <td>1 GB RAM</td>
-                <td>20 GB SSD</td>
-                <td>500 GB</td>
-                <td><span class="price-badge" style="background-color: #44bb44;">4,99 USD</span></td>
+                <td class="instance-id">c6i.sub_g1.nano</td>
+                <td>2 vCPU <span class="unit">(Intel Xeon)</span></td>
+                <td>4 GiB <span class="unit">ECC</span></td>
+                <td>Up to 12.5 Gbps</td>
+                <td>High / Burst</td>
+                <td><span class="price-tag" style="color:#34c759; background:none; border:none;">$149.00</span></td>
             </tr>
             <tr>
-                <td><strong>Standart Proje</strong></td>
-                <td>2 vCPU</td>
-                <td>4 GB RAM</td>
-                <td>80 GB SSD</td>
-                <td>2 TB</td>
-                <td><span class="price-badge" style="background-color: #2196F3;">19,99 USD</span></td>
+                <td class="instance-id">r7g.x2_cluster.xlarge</td>
+                <td>16 vCPU <span class="unit">(Graviton3)</span></td>
+                <td>128 GiB <span class="unit">DDR5</span></td>
+                <td>25.0 Gbps Dedicated</td>
+                <td>50 Gbps Fabric</td>
+                <td><span class="price-tag">$1,840.00</span></td>
             </tr>
-            <!-- Moral Bozma Alanı Başlıyor -->
-            <tr class="depression-zone">
-                <td><strong>Kurumsal Dağıtık Sunucu</strong></td>
-                <td>16 vCPU</td>
-                <td>64 GB RAM</td>
-                <td>500 GB NVMe</td>
-                <td>10 TB</td>
-                <td><span class="price-badge">249,00 USD</span></td>
+            <tr>
+                <td class="instance-id">m7i-flex.meta_node.8xlarge</td>
+                <td>64 vCPU <span class="unit">(Sapphire Rapids)</span></td>
+                <td>256 GiB <span class="unit">HBM2e</span></td>
+                <td>40.0 Gbps Burst Max</td>
+                <td>100 Gbps EFA</td>
+                <td><span class="price-tag">$4,920.00</span></td>
             </tr>
-            <tr class="depression-zone">
-                <td><strong>Büyük Veri & Yapay Zeka Giriş</strong></td>
-                <td>48 vCPU</td>
-                <td>192 GB RAM</td>
-                <td>2 TB Enterprise NVMe</td>
-                <td>50 TB</td>
-                <td><span class="price-badge">1.199,00 USD</span></td>
+            <tr class="critical-tier">
+                <td class="instance-id">p5.h100_matrix.48xlarge</td>
+                <td>192 vCPU <span class="unit">(Custom Architecture)</span></td>
+                <td>2,048 GiB <span class="unit">vRAM Distributed</span></td>
+                <td>80.0 Gbps (Sustained)</td>
+                <td>3,200 Gbps GPUDirect</td>
+                <td><span class="price-tag">$24,650.00</span></td>
             </tr>
-            <!-- Tam Anlamıyla Yıkım Noktası -->
-            <tr class="depression-zone" style="background-color: #2a0000;">
-                <td><strong>Ultra Cluster Kuantum Simülasyon</strong></td>
-                <td>128 vCPU (Özel Mimari)</td>
-                <td>512 GB RAM</td>
-                <td>10 TB NVMe RAID 10</td>
-                <td>Sınırsız (Hız Sınırsız)</td>
-                <td><span class="price-badge extreme-price">4.850,00 USD</span></td>
-            </tr>
-            <tr class="depression-zone" style="background-color: #3d0000;">
-                <td><strong>Mega Kurumsal Hükümet / Banka Modeli</strong></td>
-                <td>448 vCPU + NVIDIA H100 GPU</td>
-                <td>2.048 GB (2 TB) RAM</td>
-                <td>50 TB Askeri Seviye NVMe</td>
-                <td>Küresel Hat (Ultra Low Latency)</td>
-                <td><span class="price-badge extreme-price" style="background-color: #ff0055; color: #fff;">18.450,00 USD</span></td>
+            <tr class="critical-tier" style="background-color: #2c0e0e !important;">
+                <td class="instance-id">u-24tb1.metal_hpc.cluster_node</td>
+                <td>448 vCPU <span class="unit">(Bare Metal Bare-Die)</span></td>
+                <td>24,576 GiB <span class="unit">(24TB) Persistent</span></td>
+                <td>100.0 Gbps (Isolated)</td>
+                <td>Ultra-Low Latency Mesh</td>
+                <td><span class="price-tag">$86,400.00</span></td>
             </tr>
         </tbody>
     </table>
